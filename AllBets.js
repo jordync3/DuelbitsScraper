@@ -60,6 +60,14 @@ function wsdb(callback){
 //
         
 
+        await Promise.all([
+          console.log('done again1'),await page.click( '#root > div > div.middle-section > div.title' )
+            ,console.log('done again')
+          ]);
+
+          console.log('done')
+
+
         await page.exposeFunction('getItem', function(a) {
             // console.log(a);
             // console.log(a.split('\n'))
@@ -90,7 +98,7 @@ function wsdb(callback){
           //     observer.observe(document.querySelector("#page-content > div.styles__Wrap-sc-tm606u-7.hMNNIm > div > div.styles__Bets-sc-6jzpvq-0.fjenYi > div.styles__Table-sc-6jzpvq-4.bTLAhY"), { attributes: false, childList: true, subtree: true });
           // }
           // addObserverIfDesiredNodeAvailable();
-            observer.observe(document.querySelector("#page-content > div "), { attributes: false, childList: true, subtree: true });
+            // observer.observe(document.querySelector("#page-content > div "), { attributes: false, childList: true, subtree: true });
         });
 
 
