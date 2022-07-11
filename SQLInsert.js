@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('Duelbits','SA', 'Player9.1', {
+// const sequelize = new Sequelize('Duelbits','SA', 'Player9.1', {
+const sequelize = new Sequelize('Duelbits','admin', 'admin', {
     dialect: 'mssql',
     host: 'localhost',
     port:'1433',

@@ -1,6 +1,8 @@
 const { sqlInsert } = require('./SQLInsert');
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-extra');
 
+const StealthPlugin = require('puppeteer-extra-plugin-stealth')
+puppeteer.use(StealthPlugin())
 // COOL note : Solution = Inspect Element -> Right click -> Copy -> Copy Selector
 
 
@@ -10,6 +12,7 @@ function wsdb(callback){
 
 
   async function startBrowser() {
+    // const browser = await puppeteer.launch({headless : false});
     const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox'],headless : true});
     const page = await browser.newPage();
     return {browser, page};
@@ -24,8 +27,6 @@ function wsdb(callback){
     const {browser, page} = await startBrowser();
     page.setViewport({width: 1366, height: 3000});
     await page.goto(url);
-
-
 
     // IF I WANT TO LOGIN:
         // await Promise.all([
@@ -77,9 +78,22 @@ function wsdb(callback){
                 }
 
             });
+          //   function addObserverIfDesiredNodeAvailable() {
+          //     var composeBox = document.querySelector("#page-content > div.styles__Wrap-sc-tm606u-7.hMNNIm > div > div.styles__Bets-sc-6jzpvq-0.fjenYi > div.styles__Table-sc-6jzpvq-4.bTLAhY");
+          //     if(!composeBox) {
+          //         //The node we need does not exist yet.
+          //         //Wait 500ms and try again
+          //         window.setTimeout(addObserverIfDesiredNodeAvailable,500);
+          //         return;
+          //     }
+          //     var config = {childList: true};
+          //     observer.observe(document.querySelector("#page-content > div.styles__Wrap-sc-tm606u-7.hMNNIm > div > div.styles__Bets-sc-6jzpvq-0.fjenYi > div.styles__Table-sc-6jzpvq-4.bTLAhY"), { attributes: false, childList: true, subtree: true });
+          // }
+          // addObserverIfDesiredNodeAvailable();
             observer.observe(document.querySelector("#page-content > div.styles__Wrap-sc-tm606u-7.hMNNIm > div > div.styles__Bets-sc-6jzpvq-0.fjenYi > div.styles__Table-sc-6jzpvq-4.bTLAhY"), { attributes: false, childList: true, subtree: true });
         });
-  
+
+
   
   }
 
